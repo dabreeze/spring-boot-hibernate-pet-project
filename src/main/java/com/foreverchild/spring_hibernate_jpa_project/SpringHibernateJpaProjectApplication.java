@@ -30,12 +30,23 @@ public class SpringHibernateJpaProjectApplication {
 			getAllStudents(studentDao);
 			getStudentsByLastName(studentDao);
 			updateStudent(studentDao);
+			deleteStudent(studentDao);
+			deleteAllStudent(studentDao);
 		};
 
 	}
 
+	private void deleteAllStudent(StudentDao studentDao) {
+		studentDao.deleteAll();
+	}
+
+	private void deleteStudent(StudentDao studentDao) {
+		studentDao.delete(3);
+		System.out.println("Deleting a student");
+	}
+
 	private void updateStudent(StudentDao studentDao) {
-		Student foundStudent = studentDao.findById(1);
+		Student foundStudent = studentDao.findById(2);
 		foundStudent.setFirstName("Fred");
 		studentDao.update(foundStudent);
 		System.out.println("Updated student with Lastname fred: "+foundStudent);
